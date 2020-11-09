@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  web:
+    build: .
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    ports:
+      - "6000:6000"
+    container_name: api_olt_noc_py
+    environment:
+      MYSQL_USER: mrpuser
+      MYSQL_PASSWORD: admin
+      MYSQL_HOST: 127.16.26.16
+      MYSQL_DATABASE: noc_rml_ikb
+      MYSQL_ROOT_PASSWORD: admin
+      SECRET_KEY: 'inkombizz'
+  db:
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: mrpuser
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: noc_rml_ikb
